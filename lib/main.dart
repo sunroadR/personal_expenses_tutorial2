@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,7 +41,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             width: double.infinity,
@@ -50,20 +51,78 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
+          Card(
+            elevation: 5,
+
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: ('Title')
+                  ),
+
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                      labelText: ('Amount')
+                  ),
+                ),
+                FlatButton(
+                  child: Text('Add Transaction'),
+                  textColor: Colors.purple,
+                  onPressed: (){},
+
+                )
+              ],
+          ),
+            ),),
+
           Column(
             children: transactions.map((tx) {
               return Card(
                   child: Row(
                     children: <Widget>[
                       Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.purple,
+                            width: 1,
 
-                        child: Text(tx.amount.toString()),
-                        color: Colors.lightGreenAccent,
+                          )
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          '\$${tx.amount}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple
+                          ),
+                        ),
+
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: <Widget>[
-                          Text(tx.title),
-                          Text(tx.date.toString()),
+
+
+                          Text(tx.title,
+                          style: TextStyle(
+                              fontSize: 16,
+                               fontWeight: FontWeight.bold),
+                               ),
+                           Text(
+                                DateFormat('dd/MM/yyyy').format(tx.date),
+                          style: TextStyle(fontSize: 18,
+                          color: Colors.black),),
                         ],
                       )
                     ],
