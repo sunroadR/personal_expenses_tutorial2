@@ -1,10 +1,15 @@
 
 import 'package:flutter/material.dart';
+import './user_transactions.dart';
 
-class NewTraction extends StatelessWidget{
+class NewTransaction extends StatelessWidget{
+
+  final Function addTx;
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+   NewTransaction(this.addTx);
 
 
   @override
@@ -38,6 +43,10 @@ class NewTraction extends StatelessWidget{
 
     textColor: Colors.purple,
     onPressed: () {
+
+      addTx(titleController.text, double.parse(amountController.text)
+      );
+
     print(titleController.text);
     print(amountController.text);
 
