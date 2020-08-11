@@ -10,8 +10,9 @@ class TransactionList extends StatelessWidget {
 
 
    final List<Transaction> transactions;
+   final Function deletTransaction;
 
-  TransactionList (this.transactions);
+  TransactionList (this.transactions, this.deletTransaction);
 
 
 
@@ -50,6 +51,9 @@ class TransactionList extends StatelessWidget {
 
                 subtitle: Text(
                   DateFormat("dd--MM-yyyy").format(transactions[index].date)
+                ),
+                trailing: IconButton(icon: Icon(Icons.delete),color: Theme.of(context).errorColor,
+                onPressed: () => deletTransaction(transactions[index].id),
                 ),
               ),
             );

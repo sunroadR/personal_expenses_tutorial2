@@ -94,6 +94,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+
+  void _deleteTransaction(String id){
+
+    setState(() {
+      _userTransactions.removeWhere((tx){
+         return tx.id ==id;
+
+      });
+
+
+    });
+  }
+
   void _startAddNewTransaction(BuildContext ctx){
     showModalBottomSheet(context: ctx, builder:(_){
       return GestureDetector(
@@ -124,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Chart(_recentTransactions),
-          TransactionList(_userTransactions),
+          TransactionList(_userTransactions, _deleteTransaction),
 
                   ],
 
